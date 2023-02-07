@@ -1,4 +1,4 @@
-import React from 'react'
+import { FaTimes } from 'react-icons/fa'
 
 function Task({task, onDelete, onToggle})  {
   return (
