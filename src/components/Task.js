@@ -1,9 +1,22 @@
 import React from 'react'
 
-function Task() {
+function Task({task, onDelete, onToggle})  {
   return (
-    <div>Task</div>
-  )
-}
+    <div
+    className={`task ${task.reminder ? 'reminder' : ''}`}
+    onDoubleClick={() => onToggle(task.id)}
+  >
+    <h3>
+      {task.text}{' '}
+      <FaTimes
+        style={{color: 'red', cursor: 'pointer'}}
+        onClick={() => onDelete(task.id)}
+      />
+    </h3>
+    <p>{task.day}</p>
+  </div>
+);
+};
+
 
 export default Task
