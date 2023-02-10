@@ -1,10 +1,10 @@
 function Footer() {
   return (
-    <div>
+    <footer>
         <p>Copyright &copy; 2023</p>
         <a href="/about">About</a>
 
-    </div>
+    </footer>
   )
 }
 

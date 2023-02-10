@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 import Footer from './components/Footer';
+import About from './components/About';
 
 function App() {
   const [showAddTask, setShowAddTask] = useState();
@@ -26,7 +28,7 @@ function App() {
   };
 
   // Fetch Task
-  const fetchTask = async (id) => {
+  const fetchTask = async id => {
     const res = await fetch(`http://localhost:5000/tasks/${id}`);
     const data = await res.json();
 
@@ -63,19 +65,18 @@ function App() {
 
   // Toggle Remainder
   const toggleReminder = async id => {
-    const taskToToggle = await fetchTask(id)
-    const updTask = { ...taskToToggle,
-    reminder: !taskToToggle.reminder }
+    const taskToToggle = await fetchTask(id);
+    const updTask = {...taskToToggle, reminder: !taskToToggle.reminder};
 
     const res = await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updTask)
-    })
+      body: JSON.stringify(updTask),
+    });
 
-    const data = await res.json()
+    const data = await res.json();
 
     setTasks(
       tasks.map(task =>
@@ -85,6 +86,7 @@ function App() {
   };
 
   return (
+    <Router>
     <div className="container">
       <Header
         onAdd={() => setShowAddTask(!showAddTask)}
@@ -96,8 +98,10 @@ function App() {
       ) : (
         'No Tasks To Show'
       )}
+
       <Footer />
     </div>
+    </Router>
   );
 }
 

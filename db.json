@@ -13,6 +13,12 @@
       "day": "Feb 6th at 1:30pm",
       "remainder": true,
       "reminder": true
+    },
+    {
+      "text": "Go Cinema",
+      "day": "23/2/2023",
+      "reminder": false,
+      "id": 3
     }
   ]
 }
